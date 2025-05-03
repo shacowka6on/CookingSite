@@ -12,7 +12,7 @@ Viewing the recipe shows the owner and recipe description.
 Logged in users are able to create recipes.
 ![image](https://github.com/user-attachments/assets/81080db9-4acd-4942-9755-db0956efc8db)
 
-When proving a photo url path there is a preview window on the left.
+When entering a photo url path, there is a preview window on the left.
 ![image](https://github.com/user-attachments/assets/9cceb503-b75b-4ca5-8059-abc351328070)
 
 Owners of the recipes are the only ones who can edit their own recipes.
