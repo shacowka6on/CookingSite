@@ -1,7 +1,7 @@
 # CookingSite
 Simple site created with using C# and MVC design pattern.
 
-Users who havent loged in can only view recipes.
+Users who haven't logged in can only view recipes.
 ![image](https://github.com/user-attachments/assets/8b63edc5-8a2c-436e-8678-531fb3f721d4)
 
 Viewing the recipe shows the owner and recipe description.
@@ -9,7 +9,7 @@ Viewing the recipe shows the owner and recipe description.
 
 
 
-Loged in users are able to create recipes.
+Logged in users are able to create recipes.
 ![image](https://github.com/user-attachments/assets/81080db9-4acd-4942-9755-db0956efc8db)
 When proving a photo url path there is a preview window on the left.
 ![image](https://github.com/user-attachments/assets/9cceb503-b75b-4ca5-8059-abc351328070)
