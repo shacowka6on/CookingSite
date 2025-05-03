@@ -1,0 +1,72 @@
+﻿@model PracticeAccounts.Models.Recipe
+
+<form asp-action="Create">
+    <div class="row">
+        <div class="col-md-4 order-md-1 order-1">
+            <div class="preview-box mb-3">
+                <img id="photoPreview" src="" alt="Photo Preview" class="img-fluid" style="display: none;" />
+                <div id="noPreviewText" class="text-muted">No photo to preview</div>
+            </div>
+        </div>
+        <div class="col-md-8 order-md-2 order-1">
+            <div class="form-group">
+                <label asp-for="Name"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Description"></label>
+                <textarea asp-for="Description" class="form-control"></textarea>
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PhotoUrlPath"></label>
+                <input asp-for="PhotoUrlPath" class="form-control" id="photoUrlInput" />
+                <span asp-validation-for="PhotoUrlPath" class="text-danger"></span>
+            </div>
+            <button type="submit" class="btn btn-primary">Create</button>
+        </div>
+    </div>
+</form>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script>
+        document.getElementById('photoUrlInput').addEventListener('input', function () {
+            const photoUrl = this.value;
+            const photoPreview = document.getElementById('photoPreview');
+            const noPreviewText = document.getElementById('noPreviewText');
+
+            if (photoUrl) {
+                photoPreview.src = photoUrl;
+                photoPreview.style.display = 'block';
+                noPreviewText.style.display = 'none';
+            } else {
+                photoPreview.style.display = 'none';
+                noPreviewText.style.display = 'block';
+            }
+        });
+    </script>
+}
+<style>
+    .preview-box {
+        width: 80%;
+        height: 80%;
+        border: 1px solid #ddd;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        background-color: #f9f9f9;
+        margin: auto;
+    }
+    #photoPreview {
+        max-width: 100%;
+        max-height: 100%;
+        object-fit: cover; 
+    }
+
+    #noPreviewText {
+        font-style: italic;
+    }
+</style>

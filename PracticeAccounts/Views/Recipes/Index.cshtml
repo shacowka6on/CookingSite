@@ -1,0 +1,44 @@
+﻿@using System.Security.Claims
+@model IEnumerable<PracticeAccounts.Models.Recipe>
+
+@{
+    ViewBag.Title = "Recipes";
+}
+
+<h1>Recipes</h1>
+
+<div class="row">
+    @foreach (var recipe in Model)
+
+    {
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                <img src="@recipe.PhotoUrlPath" class="card-img-top" alt="@recipe.Name" style="height: 200px; object-fit: cover;" />
+
+                <div class="card-body">
+                    <h5 class="card-title">@recipe.Name</h5>
+                    <p class="card-text">@recipe.Description</p>
+                </div>
+
+                <div class="card-footer">
+                    @if (User.Identity.IsAuthenticated && recipe.UserId == User.FindFirstValue(ClaimTypes.NameIdentifier))
+                    {
+                        <a asp-action="Edit" asp-route-id="@recipe.Id" class="btn btn-sm btn-primary">Edit</a>
+                    }
+                    <a asp-action="Details" asp-route-id="@recipe.Id" class="btn btn-sm btn-info">View Recipe</a>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+<style>
+    .card {
+        transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+</style>

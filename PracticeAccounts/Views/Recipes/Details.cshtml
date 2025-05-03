@@ -1,0 +1,39 @@
+﻿@using System.Security.Claims
+@model Recipe
+
+@{
+    ViewData["Title"] = "Recipe Details";
+}
+
+<div class="container mt-4">
+    <h1 class="display-4">@Model.Name</h1>
+    <hr />
+
+    <div class="row">
+        <div class="col-md-6">
+            <img src="@Model.PhotoUrlPath" alt="@Model.Name" class="img-fluid rounded shadow" style="max-height: 400px; width: 100%; object-fit: cover;" />
+        </div>
+
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Description</h5>
+                    <p class="card-text">@Model.Description</p>
+
+                    <hr />
+
+                    <h5 class="card-title">Recipe Owner</h5>
+                    <p class="card-text">@Model.User.FirstName @Model.User.LastName</p>
+                </div>
+            </div>
+
+            <div class="mt-4">
+                @if (User.Identity.IsAuthenticated && Model.UserId == User.FindFirstValue(ClaimTypes.NameIdentifier))
+                {
+                    <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary">Edit Recipe</a>
+                }
+                <a asp-action="Index" class="btn btn-outline-secondary">Back to List</a>
+            </div>
+        </div>
+    </div>
+</div>

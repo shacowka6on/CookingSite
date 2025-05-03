@@ -1,0 +1,109 @@
+﻿<div class="row">
+    <div class="feedback-list mb-4">
+        @foreach (var feedback in Model)
+        {
+            <div class="card mb-3">
+                <div class="card-body">
+                    <h5 class="card-title">@feedback.UserFullname</h5>
+                    <p class="card-text">@feedback.Comment</p>
+                    <p class="card-text">
+                        <small class="text-muted">Posted on @feedback.DatePosted.ToString("MMMM dd, yyyy hh:mm tt")</small>
+                    </p>
+                </div>
+            </div>
+        }
+    </div>
+    <div class="feedback-input">
+        @if (User.Identity.IsAuthenticated)
+        {
+            <form asp-action="Create" method="post" class="feedback-form d-flex">
+                <textarea class="form-control" id="Comment" name="Comment" rows="3" placeholder="Write your comment..." required></textarea>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        }
+        else
+        {
+            <div class="alert alert-info">
+                Please <a href="/Identity/Account/Login">log in</a> to leave feedback.
+            </div>
+        }
+    </div>
+</div>
+
+<style>
+    .feedback-list {
+        max-height: 400px;
+        overflow-y: auto;
+        border: 1px solid #ddd;
+        padding: 10px;
+        border-radius: 5px;
+        width: 95%;
+        margin: auto;
+    }
+
+    .feedback-input {
+        position: fixed;
+        bottom: 7vh;
+        left: 0;
+        right: 0;
+        padding: 20px;
+        border-top: 1px solid #ddd;
+        background-color: #f9f9f9;
+    }
+
+    .feedback-form {
+        display: flex; 
+        gap: 10px; 
+    }
+
+    .feedback-form textarea {
+        flex-grow: 1; 
+        height: 50px;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        resize: none;
+    }
+
+    .feedback-form button {
+        flex-shrink: 0; 
+        padding: 10px 20px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+        font-weight: bold;
+        height: 48px;
+    }
+
+    .card {
+        border: none;
+        border-bottom: 1px solid #eee;
+    }
+
+    .card-title {
+        font-weight: bold;
+    }
+
+    .card-text small {
+        color: #666;
+    }
+
+    @@media (max-width: 600px) {
+        .feedback-form {
+            flex-direction: column;
+        }
+
+        .feedback-form textarea {
+            width: 100%; 
+            margin-bottom: 10px;
+        }
+
+        .feedback-form button {
+            width: 100%; 
+            text-align: center;
+        }
+    }
+</style>
